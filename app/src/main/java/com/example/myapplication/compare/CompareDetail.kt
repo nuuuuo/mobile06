@@ -7,15 +7,20 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -56,12 +61,20 @@ val dailyIntakeStandards = mapOf(
 )
 
 @Composable
-fun ProductList(products: List<Product>) {
+fun ProductList(products: List<Product>, viewModel: ProductViewModel) {
     val state = rememberLazyListState()
     val scope = rememberCoroutineScope()
+    var showDialog by remember { mutableStateOf(false) }
     val showButton by remember {
         derivedStateOf { state.firstVisibleItemIndex > 0 }
     }
+
+
+//    LazyColumn {
+//        items(products) { product ->
+//            ProductItem(product, onRemove = { viewModel.removeProduct(product) })
+//        }
+//    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(state = state) {
@@ -78,8 +91,65 @@ fun ProductList(products: List<Product>) {
                 }
             }
         }
+
+        FloatingActionButton(  // 다이얼로그를 표시하는 FAB
+            onClick = { showDialog = true },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp),
+            containerColor = MaterialTheme.colorScheme.primary
+        ) {
+            Icon(Icons.Default.List, contentDescription = "Show List")
+        }
+
+        if (showDialog) {
+            ProductListDialog(products.toMutableList(), onDismissRequest = { showDialog = false }, viewModel)
+        }
     }
 }
+
+@Composable
+fun ProductItem(product: Product, onRemove: () -> Unit) {
+    // Layout for product, with a remove button
+    Row {
+        Text(product.name)
+        Button(onClick = onRemove) {
+            Text("Remove")
+        }
+    }
+}
+
+@Composable
+fun ProductListDialog(products: MutableList<Product>, onDismissRequest: () -> Unit,  viewModel: ProductViewModel) {
+    // It's important to create this state list inside the composable to react to changes correctly.
+    val safeProducts = remember { mutableStateListOf<Product>().also { it.addAll(products) } }
+
+    AlertDialog(
+        onDismissRequest = onDismissRequest,
+        title = { Text("Manage Products") },
+        text = {
+            LazyColumn {
+                itemsIndexed(safeProducts, key = { index, item -> item.name }) { index, product ->
+                    SwipeToDeleteItem(
+                        product = product,
+                        onDismissed = {
+                            // safeProducts 리스트에서 제품을 직접 제거합니다.
+                            safeProducts.removeAt(index)
+                            // ViewModel의 removeProduct 메서드를 호출하여 제품을 제거합니다.
+                            viewModel.removeProduct(product)
+                        }
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            Button(onClick = onDismissRequest) { Text("Close") }
+        },
+        modifier = Modifier.fillMaxWidth().padding(16.dp)
+    )
+}
+
+
 
 @Composable
 fun ProductDescription(product: Product) {

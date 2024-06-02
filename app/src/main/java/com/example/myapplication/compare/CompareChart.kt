@@ -30,6 +30,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -46,9 +47,10 @@ import com.example.myapplication.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun MultiNutrientBarChart(products: List<Product>) {
+fun MultiNutrientBarChart(products: List<Product>, viewModel: ProductViewModel) {
     val state = rememberLazyListState()
     val scope = rememberCoroutineScope()
+    var showDialog by remember { mutableStateOf(false) }
     val labelMap by remember { mutableStateOf(generateLabelMap(products)) }
 
     val showButton by remember {
@@ -82,12 +84,26 @@ fun MultiNutrientBarChart(products: List<Product>) {
             }
         }
 
-        AnimatedVisibility(visible = showButton) {
-            ScrollToTopButton {
-                scope.launch {
-                    state.scrollToItem(0)
-                }
-            }
+//        AnimatedVisibility(visible = showButton) {
+//            ScrollToTopButton {
+//                scope.launch {
+//                    state.scrollToItem(0)
+//                }
+//            }
+//        }
+
+        FloatingActionButton(  // 다이얼로그를 표시하는 FAB
+            onClick = { showDialog = true },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp),
+            containerColor = MaterialTheme.colorScheme.primary
+        ) {
+            Icon(Icons.Default.List, contentDescription = "Show List")
+        }
+
+        if (showDialog) {
+            ProductListDialog(products.toMutableList(), onDismissRequest = { showDialog = false }, viewModel)
         }
     }
 }
