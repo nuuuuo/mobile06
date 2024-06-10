@@ -1,5 +1,6 @@
 package com.example.myapplication.DB
 
+import com.example.myapplication.DB.Nutrient
 import java.time.LocalDate
 
 data class Person(

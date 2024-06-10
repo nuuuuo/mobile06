@@ -13,6 +13,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.github.tehras.charts.bar.BarChart
+import com.github.tehras.charts.bar.BarChartData
+import com.github.tehras.charts.bar.renderer.bar.SimpleBarDrawer
+import com.github.tehras.charts.bar.renderer.xaxis.SimpleXAxisDrawer
+import com.github.tehras.charts.bar.renderer.yaxis.SimpleYAxisDrawer
+import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -112,10 +118,34 @@ fun ExpandableNutrientChart(
     var expanded by remember { mutableStateOf(false) }
     val sortedProducts = products.sortedByDescending(nutrientSelector)
 
+    val bars = sortedProducts.map { product ->
+        BarChartData.Bar(label = labelMap[product] ?: "",color = Color.Black,  value = nutrientSelector(product).toFloat())
+    }
+
     Column(modifier = Modifier.padding(16.dp)) {
         Text(text = "$title 순위", modifier = Modifier.padding(bottom = 8.dp))
 
         Spacer(modifier = Modifier.height(8.dp))
+
+        BarChart(
+            barChartData = BarChartData(bars = bars),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            barDrawer = SimpleBarDrawer(),
+            xAxisDrawer = SimpleXAxisDrawer(
+                axisLineThickness = 1.dp,
+                axisLineColor = Color.Blue
+            ),
+            yAxisDrawer = SimpleYAxisDrawer(
+                axisLineThickness = 1.dp,
+                axisLineColor = Color.Red
+            ),
+            labelDrawer = SimpleValueDrawer(
+                drawLocation = SimpleValueDrawer.DrawLocation.XAxis,
+                labelTextColor = Color.Black
+            )
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 

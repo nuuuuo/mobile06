@@ -238,6 +238,8 @@ fun CustomTextField(userInput: String, onUserInputChange: (String) -> Unit) {
             .border(1.dp, Color.Black)
             .padding(vertical = 4.dp, horizontal = 0.dp),  // Adjust padding for vertical alignment
 
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done, keyboardType = KeyboardType.Number),
+
         decorationBox = { innerTextField ->
             Box(contentAlignment = Alignment.Center) {  // Ensure the text is centered
                 innerTextField()

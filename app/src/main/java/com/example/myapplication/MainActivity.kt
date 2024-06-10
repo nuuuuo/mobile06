@@ -31,6 +31,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ku.MainScreen
 import com.example.myapplication.compare.MultiNutrientBarChart
 import com.example.myapplication.compare.NotificationApp
 import com.example.myapplication.compare.Product
@@ -45,6 +49,8 @@ import com.example.myapplication.viewmodel.LoginViewModelFactory
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -153,6 +159,7 @@ class MainActivity : ComponentActivity() {
                     // Display the list of products
 //                    ProductList(products)
 //                    MultiNutrientBarChart(products)
+
                     //val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
                     //MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
                     //NotificationApp()
@@ -177,8 +184,9 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     }
-
-
+                    val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
+                    MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
+                    //NotificationApp()
                 }
             }
         }
@@ -203,9 +211,8 @@ fun MainContent(viewmodel: ProductViewModel = viewModel()) {
         if (showDetails) {
             ProductList(products = viewmodel.products, viewModel = viewmodel)
         } else {
+
             MultiNutrientBarChart(products = viewmodel.products, viewModel = viewmodel)
         }
     }
 }
-
-
