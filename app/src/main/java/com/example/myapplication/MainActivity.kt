@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ku.MainScreen
 import com.example.myapplication.compare.MultiNutrientBarChart
 import com.example.myapplication.compare.NotificationApp
 import com.example.myapplication.compare.Product
@@ -172,5 +173,12 @@ fun MainContent(viewmodel: ProductViewModel = viewModel()) {
         }
     }
 }
-
-
+//                    val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
+//                    MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
+                    //NotificationApp()
+                    MainScreen()
+                }
+            }
+        }
+    }
+}
