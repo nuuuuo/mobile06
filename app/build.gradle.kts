@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
     kotlin("kapt")
 }
 
@@ -62,10 +63,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("androidx.navigation:navigation-compose:2.8.0-alpha06")
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.database.ktx)
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.firebase.database.ktx)
     implementation(libs.androidx.material.icons.extended)
     kapt(libs.androidx.room.compiler)
     testImplementation(libs.junit)

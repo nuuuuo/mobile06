@@ -24,6 +24,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,7 +40,17 @@ import com.example.myapplication.compare.NotificationApp
 import com.example.myapplication.compare.Product
 import com.example.myapplication.compare.ProductList
 import com.example.myapplication.compare.ProductViewModel
+import com.example.myapplication.login.LoginActivityCompose
+import com.example.myapplication.login.SignupActivityCompose
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.viewmodel.LoginRepository
+import com.example.myapplication.viewmodel.LoginViewModel
+import com.example.myapplication.viewmodel.LoginViewModelFactory
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -142,6 +159,31 @@ class MainActivity : ComponentActivity() {
                     // Display the list of products
 //                    ProductList(products)
 //                    MultiNutrientBarChart(products)
+
+                    //val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
+                    //MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
+                    //NotificationApp()
+
+
+                    val navController = rememberNavController()
+                    val db = Firebase.firestore
+
+                    val loginViewModel: LoginViewModel = viewModel(
+                        factory = LoginViewModelFactory(
+                            LoginRepository(db)
+                        )
+                    )
+
+
+                    NavHost(navController = navController, startDestination = "login") {
+                        composable("login") { LoginActivityCompose(navController, loginViewModel) }
+                        composable("signup") {
+                            SignupActivityCompose(
+                                navController,
+                                loginViewModel
+                            )
+                        }
+                    }
                     val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
                     MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
                     //NotificationApp()
@@ -169,16 +211,8 @@ fun MainContent(viewmodel: ProductViewModel = viewModel()) {
         if (showDetails) {
             ProductList(products = viewmodel.products, viewModel = viewmodel)
         } else {
-           MultiNutrientBarChart(products = viewmodel.products, viewModel = viewmodel)
-        }
-    }
-}
-//                    val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
-//                    MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
-                    //NotificationApp()
-                    MainScreen()
-                }
-            }
+
+            MultiNutrientBarChart(products = viewmodel.products, viewModel = viewmodel)
         }
     }
 }

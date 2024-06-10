@@ -117,6 +117,7 @@ fun ExpandableNutrientChart(
 ) {
     var expanded by remember { mutableStateOf(false) }
     val sortedProducts = products.sortedByDescending(nutrientSelector)
+
     val bars = sortedProducts.map { product ->
         BarChartData.Bar(label = labelMap[product] ?: "",color = Color.Black,  value = nutrientSelector(product).toFloat())
     }
