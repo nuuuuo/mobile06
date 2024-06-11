@@ -142,37 +142,6 @@ class MainActivity : ComponentActivity() {
                     // Display the list of products
 //                    ProductList(products)
 //                    MultiNutrientBarChart(products)
-                    val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
-                    MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
-                    //NotificationApp()
-                }
-            }
-        }
-    }
-}
-
-
-@Composable
-fun MainContent(viewmodel: ProductViewModel = viewModel()) {
-    Column(modifier = Modifier.padding(16.dp)) {
-        // Example of toggling views
-        var showDetails by remember { mutableStateOf(true) }
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Button(onClick = { showDetails = true }) {
-                Text("제품 자세히 보기")
-            }
-            Button(onClick = { showDetails = false }) {
-                Text("성분별 순위 보기")
-            }
-        }
-
-        if (showDetails) {
-            ProductList(products = viewmodel.products, viewModel = viewmodel)
-        } else {
-           MultiNutrientBarChart(products = viewmodel.products, viewModel = viewmodel)
-        }
-    }
-}
 //                    val viewmodel: ProductViewModel = viewModel() // ViewModel 인스턴스 생성
 //                    MainContent(viewmodel = viewmodel) // ViewModel을 MainContent로 전달
                     //NotificationApp()
@@ -182,3 +151,5 @@ fun MainContent(viewmodel: ProductViewModel = viewModel()) {
         }
     }
 }
+
+
