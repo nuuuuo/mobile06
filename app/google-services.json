@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "667978707985",
+    "firebase_url": "https://sjsk-bc4a8-default-rtdb.firebaseio.com",
+    "project_id": "sjsk-bc4a8",
+    "storage_bucket": "sjsk-bc4a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667978707985:android:46d074cb025247f151edb0",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUASirYJSURtlaSt72M3xXKCA4Bz3lUfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667978707985:android:c6b2706f2b71c67051edb0",
+        "android_client_info": {
+          "package_name": "com.example.myapplication.compare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUASirYJSURtlaSt72M3xXKCA4Bz3lUfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667978707985:android:d0251f6fa2f5ed3551edb0",
+        "android_client_info": {
+          "package_name": "com.example.sjsk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUASirYJSURtlaSt72M3xXKCA4Bz3lUfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667978707985:android:7c230157f4f2cc3451edb0",
+        "android_client_info": {
+          "package_name": "com.example.sjsk_food_search_check"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUASirYJSURtlaSt72M3xXKCA4Bz3lUfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667978707985:android:1048d2aa8394a0e851edb0",
+        "android_client_info": {
+          "package_name": "com.example.sjsk_food_search_check_macbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUASirYJSURtlaSt72M3xXKCA4Bz3lUfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

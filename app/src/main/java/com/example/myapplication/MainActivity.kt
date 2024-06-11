@@ -24,6 +24,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,7 +40,17 @@ import com.example.myapplication.compare.NotificationApp
 import com.example.myapplication.compare.Product
 import com.example.myapplication.compare.ProductList
 import com.example.myapplication.compare.ProductViewModel
+import com.example.myapplication.login.LoginActivityCompose
+import com.example.myapplication.login.SignupActivityCompose
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.viewmodel.LoginRepository
+import com.example.myapplication.viewmodel.LoginViewModel
+import com.example.myapplication.viewmodel.LoginViewModelFactory
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

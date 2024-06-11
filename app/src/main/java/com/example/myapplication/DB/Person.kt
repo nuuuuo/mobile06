@@ -14,7 +14,7 @@ data class Person(
     var carbohydrate:Double,
     var protein:Double,
     var fat:Double,
-    var intake: Map<LocalDate, Nutrient>
+    var intake: Map<String, Nutrient>
 ) {
     constructor():this("", "", "", 0, 0.0, 0.0, 0, .0, .0, .0, mapOf())
 }
