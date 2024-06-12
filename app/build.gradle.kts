@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.firebase.firestore.ktx)
     kapt(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -94,4 +95,7 @@ dependencies {
 
     // For the view system.
     implementation("com.patrykandpatrick.vico:views:2.0.0-alpha.20")
+
+//    implementation("androidx.compose.material3:material3:1.2.1")
+    ("androidx.compose.material3:material3-android:1.2.1")
 }

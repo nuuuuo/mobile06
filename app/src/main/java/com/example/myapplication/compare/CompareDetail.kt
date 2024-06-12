@@ -130,15 +130,15 @@ fun ProductListDialog(products: MutableList<Product>, onDismissRequest: () -> Un
         text = {
             LazyColumn {
                 itemsIndexed(safeProducts, key = { index, item -> item.name }) { index, product ->
-                    SwipeToDeleteItem(
-                        product = product,
-                        onDismissed = {
-                            // safeProducts 리스트에서 제품을 직접 제거합니다.
-                            safeProducts.removeAt(index)
-                            // ViewModel의 removeProduct 메서드를 호출하여 제품을 제거합니다.
-                            viewModel.removeProduct(product)
-                        }
-                    )
+//                    SwipeToDeleteItem(
+//                        product = product,
+//                        onDismissed = {
+//                            // safeProducts 리스트에서 제품을 직접 제거합니다.
+//                            safeProducts.removeAt(index)
+//                            // ViewModel의 removeProduct 메서드를 호출하여 제품을 제거합니다.
+//                            viewModel.removeProduct(product)
+//                        }
+//                    )
                 }
             }
         },

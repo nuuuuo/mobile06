@@ -1,6 +1,5 @@
 package com.example.myapplication.DB
 
-import com.example.myapplication.DB.Nutrient
 import java.time.LocalDate
 
 data class Person(
@@ -14,7 +13,7 @@ data class Person(
     var carbohydrate:Double,
     var protein:Double,
     var fat:Double,
-    var intake: Map<String, Nutrient>
+    var intake: Map<LocalDate, Nutrient>
 ) {
     constructor():this("", "", "", 0, 0.0, 0.0, 0, .0, .0, .0, mapOf())
 }
