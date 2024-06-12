@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import android.util.Log
-import encodeValue
 
 
 //Compose에서 API 데이터를 요청하고 화면에 표시
@@ -21,14 +20,14 @@ class SjskViewModel : ViewModel() {
     private val _data = MutableStateFlow<ApiResponse?>(null)
     val data = _data.asStateFlow()
 
-    init {
-        loadData()  // 예시로 "국밥_돼지머리"를 로드하는 경우
-    }
+//    init {
+//        loadData()  // 예시로 "국밥_돼지머리"를 로드하는 경우
+//    }
 
-    private fun loadData() {
+    private fun loadData(pageNo: Int, foodName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = RetrofitClient.instance.getData().execute()
+                val response = RetrofitClient.instance.getData(pageNo = pageNo , foodName = foodName).execute()
                 if (response.isSuccessful) {
                     _data.value = response.body()
                     Log.d("API_SUCCESS", "Response successful: ${response.body()} \nresponse: ${response}")

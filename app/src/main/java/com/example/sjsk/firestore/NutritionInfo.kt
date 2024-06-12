@@ -111,7 +111,6 @@ data class Item(
 
     @field:Element(name = "UPDATE_YMD", required = false)
     var UPDATE_YMD: String? = null
-
 )
 
 
