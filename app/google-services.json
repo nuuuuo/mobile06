@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "667978707985",
+    "project_id": "sjsk-bc4a8",
+    "storage_bucket": "sjsk-bc4a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667978707985:android:d0251f6fa2f5ed3551edb0",
+        "android_client_info": {
+          "package_name": "com.example.sjsk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUASirYJSURtlaSt72M3xXKCA4Bz3lUfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
